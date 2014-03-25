@@ -1,0 +1,1955 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:hyque="http://semanticscience.org/ontology/hyque.owl#"
+    xmlns:afn="http://jena.hpl.hp.com/ARQ/function#"
+    xmlns:spin="http://spinrdf.org/spin#"
+    xmlns:fn="http://www.w3.org/2005/xpath-functions#"
+    xmlns:sp="http://spinrdf.org/sp#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns="http://bio2rdf.org/hyque-system-rules#"
+    xmlns:sio="http://semanticscience.org/ontology/sio.owl#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:spl="http://spinrdf.org/spl#"
+  xml:base="http://bio2rdf.org/hyque-system-rules">
+  <owl:Ontology rdf:about="">
+    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Created with TopBraid Composer</owl:versionInfo>
+    <owl:imports rdf:resource="http://spinrdf.org/spin"/>
+    <owl:imports rdf:resource="http://semanticscience.org/ontology/hyque.owl"/>
+  </owl:Ontology>
+  <rdf:Property rdf:about="http://spinrdf.org/arg#graph">
+    <rdfs:subPropertyOf rdf:resource="http://spinrdf.org/sp#arg"/>
+  </rdf:Property>
+  <rdf:Property rdf:about="http://spinrdf.org/arg#object">
+    <rdfs:subPropertyOf rdf:resource="http://spinrdf.org/sp#arg"/>
+  </rdf:Property>
+  <rdf:Property rdf:about="http://spinrdf.org/arg#subject">
+    <rdfs:subPropertyOf rdf:resource="http://spinrdf.org/sp#arg"/>
+  </rdf:Property>
+  <rdf:Property rdf:about="http://spinrdf.org/arg#predicate">
+    <rdfs:subPropertyOf rdf:resource="http://spinrdf.org/sp#arg"/>
+  </rdf:Property>
+  <spin:Function rdf:ID="returnDate">
+    <spin:body>
+      <sp:Select>
+        <sp:resultVariables rdf:parseType="Collection">
+          <rdf:Description>
+            <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >date</sp:varName>
+          </rdf:Description>
+        </sp:resultVariables>
+        <sp:where rdf:parseType="Collection">
+          <sp:Bind>
+            <sp:expression rdf:resource="http://jena.hpl.hp.com/ARQ/function#now"/>
+            <sp:variable rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >date</sp:varName>
+            </sp:variable>
+          </sp:Bind>
+        </sp:where>
+      </sp:Select>
+    </spin:body>
+    <rdfs:subClassOf rdf:resource="http://spinrdf.org/spin#Functions"/>
+  </spin:Function>
+  <rdf:Description rdf:about="http://semanticscience.org/ontology/hyque.owl#HYPOTHESIS_0000014">
+    <spin:rule>
+      <sp:Construct>
+        <sp:where rdf:parseType="Collection">
+          <rdf:Description>
+            <sp:subject rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >hypothesis</sp:varName>
+            </sp:subject>
+            <sp:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+            <sp:object>
+              <rdf:Description rdf:about="http://semanticscience.org/ontology/hyque.owl#HYPOTHESIS_0000000">
+                <spin:rule>
+                  <sp:Construct>
+                    <sp:where rdf:parseType="Collection">
+                      <rdf:Description>
+                        <sp:subject rdf:resource="http://spinrdf.org/spin#_this"/>
+                        <sp:predicate rdf:resource="http://semanticscience.org/ontology/hyque.owl#HYPOTHESIS_0000010"/>
+                        <sp:object rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >proposition</sp:varName>
+                        </sp:object>
+                      </rdf:Description>
+                      <rdf:Description>
+                        <sp:subject rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >proposition</sp:varName>
+                        </sp:subject>
+                        <sp:predicate rdf:resource="http://semanticscience.org/ontology/hyque.owl#HYPOTHESIS_0000008"/>
+                        <sp:object rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >propositionEval</sp:varName>
+                        </sp:object>
+                      </rdf:Description>
+                      <sp:Bind>
+                        <sp:variable rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >hypothesisEvalScore</sp:varName>
+                        </sp:variable>
+                        <sp:expression>
+                          <calculateHypothesisScore>
+                            <sp:arg1 rdf:resource="http://spinrdf.org/spin#_this"/>
+                          </calculateHypothesisScore>
+                        </sp:expression>
+                      </sp:Bind>
+                      <sp:Bind>
+                        <sp:variable rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >hypothesisEval</sp:varName>
+                        </sp:variable>
+                        <sp:expression>
+                          <sp:iri>
+                            <sp:arg1>
+                              <fn:concat>
+                                <sp:arg1>
+                                  <afn:namespace>
+                                    <sp:arg1 rdf:resource="http://spinrdf.org/spin#_this"/>
+                                  </afn:namespace>
+                                </sp:arg1>
+                                <sp:arg2>
+                                  <afn:localname>
+                                    <sp:arg1 rdf:resource="http://spinrdf.org/spin#_this"/>
+                                  </afn:localname>
+                                </sp:arg2>
+                                <sp:arg3>_</sp:arg3>
+                                <sp:arg4>evaluation</sp:arg4>
+                              </fn:concat>
+                            </sp:arg1>
+                          </sp:iri>
+                        </sp:expression>
+                      </sp:Bind>
+                      <sp:Bind>
+                        <sp:variable rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >hypothesisScoreFunction</sp:varName>
+                        </sp:variable>
+                        <sp:expression>
+                          <spin:Function rdf:ID="calculateHypothesisScore">
+                            <rdfs:subClassOf rdf:resource="http://spinrdf.org/spin#Functions"/>
+                            <spin:body>
+                              <sp:Select>
+                                <sp:where rdf:parseType="Collection">
+                                  <rdf:Description>
+                                    <sp:subject rdf:resource="http://spinrdf.org/spin#_arg1"/>
+                                    <sp:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+                                    <sp:object rdf:resource="http://semanticscience.org/ontology/hyque.owl#HYPOTHESIS_0000000"/>
+                                  </rdf:Description>
+                                  <rdf:Description>
+                                    <sp:subject rdf:resource="http://spinrdf.org/spin#_arg1"/>
+                                    <sp:predicate rdf:resource="http://semanticscience.org/ontology/hyque.owl#HYPOTHESIS_0000010"/>
+                                    <sp:object rdf:parseType="Resource">
+                                      <sp:varName rdf:datatype=
+                                      "http://www.w3.org/2001/XMLSchema#string"
+                                      >proposition</sp:varName>
+                                    </sp:object>
+                                  </rdf:Description>
+                                  <rdf:Description>
+                                    <sp:subject rdf:parseType="Resource">
+                                      <sp:varName rdf:datatype=
+                                      "http://www.w3.org/2001/XMLSchema#string"
+                                      >proposition</sp:varName>
+                                    </sp:subject>
+                                    <sp:predicate rdf:resource="http://semanticscience.org/ontology/hyque.owl#HYPOTHESIS_0000008"/>
+                                    <sp:object rdf:parseType="Resource">
+                                      <sp:varName rdf:datatype=
+                                      "http://www.w3.org/2001/XMLSchema#string"
+                                      >propositionScore</sp:varName>
+                                    </sp:object>
+                                  </rdf:Description>
+                                  <rdf:Description>
+                                    <sp:subject rdf:parseType="Resource">
+                                      <sp:varName rdf:datatype=
+                                      "http://www.w3.org/2001/XMLSchema#string"
+                                      >propositionScore</sp:varName>
+                                    </sp:subject>
+                                    <sp:predicate rdf:resource="http://semanticscience.org/ontology/hyque.owl#HYPOTHESIS_0000013"/>
+                                    <sp:object rdf:parseType="Resource">
+                                      <sp:varName rdf:datatype=
+                                      "http://www.w3.org/2001/XMLSchema#string"
+                                      >propositionScoreVal</sp:varName>
+                                    </sp:object>
+                                  </rdf:Description>
+                                </sp:where>
+                                <sp:resultVariables rdf:parseType="Collection">
+                                  <rdf:Description>
+                                    <sp:varName rdf:datatype=
+                                    "http://www.w3.org/2001/XMLSchema#string"
+                                    >return</sp:varName>
+                                    <sp:expression>
+                                      <sp:Avg>
+                                        <sp:expression rdf:parseType="Resource">
+                                          <sp:varName rdf:datatype=
+                                          "http://www.w3.org/2001/XMLSchema#string"
+                                          >propositionScoreVal</sp:varName>
+                                        </sp:expression>
+                                      </sp:Avg>
+                                    </sp:expression>
+                                  </rdf:Description>
+                                </sp:resultVariables>
+                              </sp:Select>
+                            </spin:body>
+                            <spin:constraint>
+                              <spl:Argument>
+                                <spl:predicate rdf:resource="http://spinrdf.org/sp#arg1"/>
+                              </spl:Argument>
+                            </spin:constraint>
+                          </spin:Function>
+                        </sp:expression>
+                      </sp:Bind>
+                      <sp:Bind>
+                        <sp:variable rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >hypothesisEvalOvopub</sp:varName>
+                        </sp:variable>
+                        <sp:expression>
+                          <sp:iri>
+                            <sp:arg1>
+                              <fn:concat>
+                                <sp:arg1>
+                                  <afn:namespace>
+                                    <sp:arg1 rdf:resource="http://spinrdf.org/spin#_this"/>
+                                  </afn:namespace>
+                                </sp:arg1>
+                                <sp:arg2>
+                                  <afn:localname>
+                                    <sp:arg1 rdf:resource="http://spinrdf.org/spin#_this"/>
+                                  </afn:localname>
+                                </sp:arg2>
+                                <sp:arg3>_evaluation_ovopub</sp:arg3>
+                              </fn:concat>
+                            </sp:arg1>
+                          </sp:iri>
+                        </sp:expression>
+                      </sp:Bind>
+                      <sp:Bind>
+                        <sp:variable rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >time</sp:varName>
+                        </sp:variable>
+                        <sp:expression>
+                          <afn:now/>
+                        </sp:expression>
+                      </sp:Bind>
+                      <sp:Bind>
+                        <sp:variable rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >day</sp:varName>
+                        </sp:variable>
+                        <sp:expression>
+                          <sp:day>
+                            <sp:arg1 rdf:parseType="Resource">
+                              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                              >time</sp:varName>
+                            </sp:arg1>
+                          </sp:day>
+                        </sp:expression>
+                      </sp:Bind>
+                      <sp:Bind>
+                        <sp:variable rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >month</sp:varName>
+                        </sp:variable>
+                        <sp:expression>
+                          <sp:month>
+                            <sp:arg1 rdf:parseType="Resource">
+                              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                              >time</sp:varName>
+                            </sp:arg1>
+                          </sp:month>
+                        </sp:expression>
+                      </sp:Bind>
+                      <sp:Bind>
+                        <sp:variable rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >year</sp:varName>
+                        </sp:variable>
+                        <sp:expression>
+                          <sp:year>
+                            <sp:arg1 rdf:parseType="Resource">
+                              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                              >time</sp:varName>
+                            </sp:arg1>
+                          </sp:year>
+                        </sp:expression>
+                      </sp:Bind>
+                      <sp:Bind>
+                        <sp:variable rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >hour</sp:varName>
+                        </sp:variable>
+                        <sp:expression>
+                          <sp:hours>
+                            <sp:arg1 rdf:parseType="Resource">
+                              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                              >time</sp:varName>
+                            </sp:arg1>
+                          </sp:hours>
+                        </sp:expression>
+                      </sp:Bind>
+                      <sp:Bind>
+                        <sp:variable rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >currentTime</sp:varName>
+                        </sp:variable>
+                        <sp:expression>
+                          <fn:concat>
+                            <sp:arg1 rdf:parseType="Resource">
+                              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                              >year</sp:varName>
+                            </sp:arg1>
+                            <sp:arg2>-</sp:arg2>
+                            <sp:arg3 rdf:parseType="Resource">
+                              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                              >month</sp:varName>
+                            </sp:arg3>
+                            <sp:arg4>-</sp:arg4>
+                            <sp:arg5 rdf:parseType="Resource">
+                              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                              >day</sp:varName>
+                            </sp:arg5>
+                            <sp:arg6>T</sp:arg6>
+                            <sp:arg7 rdf:parseType="Resource">
+                              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                              >hour</sp:varName>
+                            </sp:arg7>
+                            <sp:arg8>:00:00Z</sp:arg8>
+                          </fn:concat>
+                        </sp:expression>
+                      </sp:Bind>
+                    </sp:where>
+                    <sp:templates rdf:parseType="Collection">
+                      <rdf:Description>
+                        <sp:subject rdf:resource="http://spinrdf.org/spin#_this"/>
+                        <sp:predicate rdf:resource="http://semanticscience.org/ontology/hyque.owl#HYPOTHESIS_0000008"/>
+                        <sp:object rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >hypothesisEval</sp:varName>
+                        </sp:object>
+                      </rdf:Description>
+                      <rdf:Description>
+                        <sp:subject rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >hypothesisEval</sp:varName>
+                        </sp:subject>
+                        <sp:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+                        <sp:object rdf:resource="http://semanticscience.org/ontology/hyque.owl#HYPOTHESIS_0000005"/>
+                      </rdf:Description>
+                      <rdf:Description>
+                        <sp:subject rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >hypothesisEval</sp:varName>
+                        </sp:subject>
+                        <sp:predicate rdf:resource="http://semanticscience.org/ontology/hyque.owl#HYPOTHESIS_0000007"/>
+                        <sp:object rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >propositionEval</sp:varName>
+                        </sp:object>
+                      </rdf:Description>
+                      <rdf:Description>
+                        <sp:subject rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >hypothesisEval</sp:varName>
+                        </sp:subject>
+                        <sp:predicate rdf:resource="http://semanticscience.org/ontology/hyque.owl#HYPOTHESIS_0000013"/>
+                        <sp:object rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >hypothesisEvalScore</sp:varName>
+                        </sp:object>
+                      </rdf:Description>
+                      <rdf:Description>
+                        <sp:subject rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >hypothesisEval</sp:varName>
+                        </sp:subject>
+                        <sp:predicate rdf:resource="http://semanticscience.org/ontology/hyque.owl#HYPOTHESIS_0000030"/>
+                        <sp:object rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >hypothesisScoreFunction</sp:varName>
+                        </sp:object>
+                      </rdf:Description>
+                      <rdf:Description>
+                        <sp:subject rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >hypothesisEval</sp:varName>
+                        </sp:subject>
+                        <sp:predicate rdf:resource="http://www.w3.org/2004/03/trix/rdfg-1/subGraphOf"/>
+                        <sp:object rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >hypothesisEvalOvopub</sp:varName>
+                        </sp:object>
+                      </rdf:Description>
+                      <rdf:Description>
+                        <sp:subject rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >hypothesisEvalOvopub</sp:varName>
+                        </sp:subject>
+                        <sp:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+                        <sp:object rdf:resource="http://semanticscience.org/ontology/sio.owl#SIO_001302"/>
+                      </rdf:Description>
+                      <rdf:Description>
+                        <sp:subject rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >hypothesisEvalOvopub</sp:varName>
+                        </sp:subject>
+                        <sp:predicate rdf:resource="http://purl.org/dc/terms/creator"/>
+                        <sp:object>HyQue</sp:object>
+                      </rdf:Description>
+                      <rdf:Description>
+                        <sp:subject rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >hypothesisEvalOvopub</sp:varName>
+                        </sp:subject>
+                        <sp:predicate rdf:resource="http://purl.org/dc/terms/rights"/>
+                        <sp:object>use</sp:object>
+                      </rdf:Description>
+                      <rdf:Description>
+                        <sp:subject rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >hypothesisEvalOvopub</sp:varName>
+                        </sp:subject>
+                        <sp:predicate rdf:resource="http://purl.org/dc/terms/created"/>
+                        <sp:object rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >currentTime</sp:varName>
+                        </sp:object>
+                      </rdf:Description>
+                    </sp:templates>
+                  </sp:Construct>
+                </spin:rule>
+              </rdf:Description>
+            </sp:object>
+          </rdf:Description>
+          <sp:TriplePath>
+            <sp:subject rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >hypothesis</sp:varName>
+            </sp:subject>
+            <sp:path>
+              <sp:ModPath>
+                <sp:subPath rdf:resource="http://semanticscience.org/ontology/hyque.owl#HYPOTHESIS_0000010"/>
+                <sp:modMax rdf:datatype="http://www.w3.org/2001/XMLSchema#integer"
+                >-2</sp:modMax>
+                <sp:modMin rdf:datatype="http://www.w3.org/2001/XMLSchema#integer"
+                >0</sp:modMin>
+              </sp:ModPath>
+            </sp:path>
+            <sp:object rdf:resource="http://spinrdf.org/spin#_this"/>
+          </sp:TriplePath>
+          <rdf:Description>
+            <sp:subject rdf:resource="http://spinrdf.org/spin#_this"/>
+            <sp:predicate rdf:resource="http://semanticscience.org/ontology/hyque.owl#HYPOTHESIS_0000012"/>
+            <sp:object rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >event</sp:varName>
+            </sp:object>
+          </rdf:Description>
+          <rdf:Description>
+            <sp:subject rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >event</sp:varName>
+            </sp:subject>
+            <sp:predicate rdf:resource="http://semanticscience.org/ontology/hyque.owl#HYPOTHESIS_0000008"/>
+            <sp:object rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >eventScore</sp:varName>
+            </sp:object>
+          </rdf:Description>
+          <rdf:Description>
+            <sp:subject rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >eventScore</sp:varName>
+            </sp:subject>
+            <sp:predicate rdf:resource="http://semanticscience.org/ontology/hyque.owl#HYPOTHESIS_0000013"/>
+            <sp:object rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >eventScoreVal</sp:varName>
+            </sp:object>
+          </rdf:Description>
+          <sp:Bind>
+            <sp:variable rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >propositionEvalScoreVal</sp:varName>
+            </sp:variable>
+            <sp:expression rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >eventScoreVal</sp:varName>
+            </sp:expression>
+          </sp:Bind>
+          <sp:Bind>
+            <sp:variable rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >propositionEval</sp:varName>
+            </sp:variable>
+            <sp:expression>
+              <sp:iri>
+                <sp:arg1>
+                  <fn:concat>
+                    <sp:arg1>
+                      <afn:namespace>
+                        <sp:arg1 rdf:resource="http://spinrdf.org/spin#_this"/>
+                      </afn:namespace>
+                    </sp:arg1>
+                    <sp:arg2>
+                      <afn:localname>
+                        <sp:arg1 rdf:resource="http://spinrdf.org/spin#_this"/>
+                      </afn:localname>
+                    </sp:arg2>
+                    <sp:arg3>_proposition_evaluation</sp:arg3>
+                  </fn:concat>
+                </sp:arg1>
+              </sp:iri>
+            </sp:expression>
+          </sp:Bind>
+          <sp:Bind>
+            <sp:variable rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >propositionEvalOvopub</sp:varName>
+            </sp:variable>
+            <sp:expression>
+              <sp:iri>
+                <sp:arg1>
+                  <fn:concat>
+                    <sp:arg1>
+                      <afn:namespace>
+                        <sp:arg1 rdf:resource="http://spinrdf.org/spin#_this"/>
+                      </afn:namespace>
+                    </sp:arg1>
+                    <sp:arg2>
+                      <afn:localname>
+                        <sp:arg1 rdf:resource="http://spinrdf.org/spin#_this"/>
+                      </afn:localname>
+                    </sp:arg2>
+                    <sp:arg3>_proposition_evaluation_ovopub</sp:arg3>
+                  </fn:concat>
+                </sp:arg1>
+              </sp:iri>
+            </sp:expression>
+          </sp:Bind>
+          <sp:Bind>
+            <sp:variable rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >time</sp:varName>
+            </sp:variable>
+            <sp:expression>
+              <afn:now/>
+            </sp:expression>
+          </sp:Bind>
+          <sp:Bind>
+            <sp:variable rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >day</sp:varName>
+            </sp:variable>
+            <sp:expression>
+              <sp:day>
+                <sp:arg1 rdf:parseType="Resource">
+                  <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                  >time</sp:varName>
+                </sp:arg1>
+              </sp:day>
+            </sp:expression>
+          </sp:Bind>
+          <sp:Bind>
+            <sp:variable rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >month</sp:varName>
+            </sp:variable>
+            <sp:expression>
+              <sp:month>
+                <sp:arg1 rdf:parseType="Resource">
+                  <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                  >time</sp:varName>
+                </sp:arg1>
+              </sp:month>
+            </sp:expression>
+          </sp:Bind>
+          <sp:Bind>
+            <sp:variable rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >year</sp:varName>
+            </sp:variable>
+            <sp:expression>
+              <sp:year>
+                <sp:arg1 rdf:parseType="Resource">
+                  <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                  >time</sp:varName>
+                </sp:arg1>
+              </sp:year>
+            </sp:expression>
+          </sp:Bind>
+          <sp:Bind>
+            <sp:variable rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >hour</sp:varName>
+            </sp:variable>
+            <sp:expression>
+              <sp:hours>
+                <sp:arg1 rdf:parseType="Resource">
+                  <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                  >time</sp:varName>
+                </sp:arg1>
+              </sp:hours>
+            </sp:expression>
+          </sp:Bind>
+          <sp:Bind>
+            <sp:variable rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >currentTime</sp:varName>
+            </sp:variable>
+            <sp:expression>
+              <fn:concat>
+                <sp:arg1 rdf:parseType="Resource">
+                  <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                  >year</sp:varName>
+                </sp:arg1>
+                <sp:arg2>-</sp:arg2>
+                <sp:arg3 rdf:parseType="Resource">
+                  <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                  >month</sp:varName>
+                </sp:arg3>
+                <sp:arg4>-</sp:arg4>
+                <sp:arg5 rdf:parseType="Resource">
+                  <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                  >day</sp:varName>
+                </sp:arg5>
+                <sp:arg6>T</sp:arg6>
+                <sp:arg7 rdf:parseType="Resource">
+                  <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                  >hour</sp:varName>
+                </sp:arg7>
+                <sp:arg8>:00:00Z</sp:arg8>
+              </fn:concat>
+            </sp:expression>
+          </sp:Bind>
+        </sp:where>
+        <sp:templates rdf:parseType="Collection">
+          <rdf:Description>
+            <sp:subject rdf:resource="http://spinrdf.org/spin#_this"/>
+            <sp:predicate rdf:resource="http://semanticscience.org/ontology/hyque.owl#HYPOTHESIS_0000008"/>
+            <sp:object rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >propositionEval</sp:varName>
+            </sp:object>
+          </rdf:Description>
+          <rdf:Description>
+            <sp:subject rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >propositionEval</sp:varName>
+            </sp:subject>
+            <sp:predicate rdf:resource="http://semanticscience.org/ontology/hyque.owl#HYPOTHESIS_0000007"/>
+            <sp:object rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >eventScore</sp:varName>
+            </sp:object>
+          </rdf:Description>
+          <rdf:Description>
+            <sp:subject rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >propositionEval</sp:varName>
+            </sp:subject>
+            <sp:predicate rdf:resource="http://semanticscience.org/ontology/hyque.owl#HYPOTHESIS_0000013"/>
+            <sp:object rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >propositionEvalScoreVal</sp:varName>
+            </sp:object>
+          </rdf:Description>
+          <rdf:Description>
+            <sp:subject rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >propositionEval</sp:varName>
+            </sp:subject>
+            <sp:predicate rdf:resource="http://www.w3.org/2004/03/trix/rdfg-1/subGraphOf"/>
+            <sp:object rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >propositionEvalOvopub</sp:varName>
+            </sp:object>
+          </rdf:Description>
+          <rdf:Description>
+            <sp:subject rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >propositionEvalOvopub</sp:varName>
+            </sp:subject>
+            <sp:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+            <sp:object rdf:resource="http://semanticscience.org/ontology/sio.owl#SIO_001302"/>
+          </rdf:Description>
+          <rdf:Description>
+            <sp:subject rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >propositionEvalOvopub</sp:varName>
+            </sp:subject>
+            <sp:predicate rdf:resource="http://purl.org/dc/terms/creator"/>
+            <sp:object>HyQue</sp:object>
+          </rdf:Description>
+          <rdf:Description>
+            <sp:subject rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >propositionEvalOvopub</sp:varName>
+            </sp:subject>
+            <sp:predicate rdf:resource="http://purl.org/dc/terms/rights"/>
+            <sp:object>use</sp:object>
+          </rdf:Description>
+          <rdf:Description>
+            <sp:subject rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >propositionEvalOvopub</sp:varName>
+            </sp:subject>
+            <sp:predicate rdf:resource="http://purl.org/dc/terms/created"/>
+            <sp:object rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >currentTime</sp:varName>
+            </sp:object>
+          </rdf:Description>
+        </sp:templates>
+      </sp:Construct>
+    </spin:rule>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://semanticscience.org/ontology/hyque.owl#HYPOTHESIS_0000002">
+    <spin:rule>
+      <sp:Construct>
+        <sp:where rdf:parseType="Collection">
+          <rdf:Description>
+            <sp:subject rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >hypothesis</sp:varName>
+            </sp:subject>
+            <sp:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+            <sp:object rdf:resource="http://semanticscience.org/ontology/hyque.owl#HYPOTHESIS_0000000"/>
+          </rdf:Description>
+          <sp:TriplePath>
+            <sp:subject rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >hypothesis</sp:varName>
+            </sp:subject>
+            <sp:path>
+              <sp:ModPath>
+                <sp:subPath rdf:resource="http://semanticscience.org/ontology/hyque.owl#HYPOTHESIS_0000010"/>
+                <sp:modMax rdf:datatype="http://www.w3.org/2001/XMLSchema#integer"
+                >-2</sp:modMax>
+                <sp:modMin rdf:datatype="http://www.w3.org/2001/XMLSchema#integer"
+                >0</sp:modMin>
+              </sp:ModPath>
+            </sp:path>
+            <sp:object rdf:resource="http://spinrdf.org/spin#_this"/>
+          </sp:TriplePath>
+          <rdf:Description>
+            <sp:subject rdf:resource="http://spinrdf.org/spin#_this"/>
+            <sp:predicate rdf:resource="http://semanticscience.org/ontology/hyque.owl#HYPOTHESIS_0000010"/>
+            <sp:object rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >proposition</sp:varName>
+            </sp:object>
+          </rdf:Description>
+          <rdf:Description>
+            <sp:subject rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >event</sp:varName>
+            </sp:subject>
+            <sp:predicate rdf:resource="http://semanticscience.org/ontology/hyque.owl#HYPOTHESIS_0000008"/>
+            <sp:object rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >propositionScore</sp:varName>
+            </sp:object>
+          </rdf:Description>
+          <sp:Bind>
+            <sp:variable rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >propositionFunction</sp:varName>
+            </sp:variable>
+            <sp:expression>
+              <spin:Function rdf:ID="calculateConjunctivePropositionOfPropositionsScore">
+                <rdfs:subClassOf rdf:resource="http://spinrdf.org/spin#Functions"/>
+                <spin:constraint>
+                  <spl:Argument>
+                    <spl:predicate rdf:resource="http://spinrdf.org/sp#arg1"/>
+                  </spl:Argument>
+                </spin:constraint>
+                <spin:body>
+                  <sp:Select>
+                    <sp:where rdf:parseType="Collection">
+                      <rdf:Description>
+                        <sp:subject rdf:resource="http://spinrdf.org/spin#_arg1"/>
+                        <sp:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+                        <sp:object rdf:resource="http://semanticscience.org/ontology/hyque.owl#HYPOTHESIS_0000002"/>
+                      </rdf:Description>
+                      <rdf:Description>
+                        <sp:subject rdf:resource="http://spinrdf.org/spin#_arg1"/>
+                        <sp:predicate rdf:resource="http://semanticscience.org/ontology/hyque.owl#HYPOTHESIS_0000010"/>
+                        <sp:object rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >proposition</sp:varName>
+                        </sp:object>
+                      </rdf:Description>
+                      <rdf:Description>
+                        <sp:subject rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >proposition</sp:varName>
+                        </sp:subject>
+                        <sp:predicate rdf:resource="http://semanticscience.org/ontology/hyque.owl#HYPOTHESIS_0000008"/>
+                        <sp:object rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >propositionScore</sp:varName>
+                        </sp:object>
+                      </rdf:Description>
+                      <rdf:Description>
+                        <sp:subject rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >propositionScore</sp:varName>
+                        </sp:subject>
+                        <sp:predicate rdf:resource="http://semanticscience.org/ontology/hyque.owl#HYPOTHESIS_0000013"/>
+                        <sp:object rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >propositionScoreVal</sp:varName>
+                        </sp:object>
+                      </rdf:Description>
+                    </sp:where>
+                    <sp:resultVariables rdf:parseType="Collection">
+                      <rdf:Description>
+                        <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                        >return</sp:varName>
+                        <sp:expression>
+                          <sp:Avg>
+                            <sp:expression rdf:parseType="Resource">
+                              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                              >propositionScoreVal</sp:varName>
+                            </sp:expression>
+                          </sp:Avg>
+                        </sp:expression>
+                      </rdf:Description>
+                    </sp:resultVariables>
+                  </sp:Select>
+                </spin:body>
+              </spin:Function>
+            </sp:expression>
+          </sp:Bind>
+          <sp:Bind>
+            <sp:variable rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >propositionEvalScoreVal</sp:varName>
+            </sp:variable>
+            <sp:expression>
+              <calculateConjunctivePropositionOfPropositionsScore>
+                <sp:arg1 rdf:resource="http://spinrdf.org/spin#_this"/>
+              </calculateConjunctivePropositionOfPropositionsScore>
+            </sp:expression>
+          </sp:Bind>
+          <sp:Bind>
+            <sp:variable rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >propositionEval</sp:varName>
+            </sp:variable>
+            <sp:expression>
+              <sp:iri>
+                <sp:arg1>
+                  <fn:concat>
+                    <sp:arg1>
+                      <afn:namespace>
+                        <sp:arg1 rdf:resource="http://spinrdf.org/spin#_this"/>
+                      </afn:namespace>
+                    </sp:arg1>
+                    <sp:arg2>
+                      <afn:localname>
+                        <sp:arg1 rdf:resource="http://spinrdf.org/spin#_this"/>
+                      </afn:localname>
+                    </sp:arg2>
+                    <sp:arg3>_proposition_evaluation</sp:arg3>
+                  </fn:concat>
+                </sp:arg1>
+              </sp:iri>
+            </sp:expression>
+          </sp:Bind>
+        </sp:where>
+        <sp:templates rdf:parseType="Collection">
+          <rdf:Description>
+            <sp:subject rdf:resource="http://spinrdf.org/spin#_this"/>
+            <sp:predicate rdf:resource="http://semanticscience.org/ontology/hyque.owl#HYPOTHESIS_0000008"/>
+            <sp:object rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >propositionEval</sp:varName>
+            </sp:object>
+          </rdf:Description>
+          <rdf:Description>
+            <sp:subject rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >propositionEval</sp:varName>
+            </sp:subject>
+            <sp:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+            <sp:object rdf:resource="http://semanticscience.org/ontology/hyque.owl#HYPOTHESIS_0000005"/>
+          </rdf:Description>
+          <rdf:Description>
+            <sp:subject rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >propositionEval</sp:varName>
+            </sp:subject>
+            <sp:predicate rdf:resource="http://semanticscience.org/ontology/hyque.owl#HYPOTHESIS_0000007"/>
+            <sp:object rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >propositionScore</sp:varName>
+            </sp:object>
+          </rdf:Description>
+          <rdf:Description>
+            <sp:subject rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >propositionEval</sp:varName>
+            </sp:subject>
+            <sp:predicate rdf:resource="http://semanticscience.org/ontology/hyque.owl#HYPOTHESIS_0000013"/>
+            <sp:object rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >propositionEvalScoreVal</sp:varName>
+            </sp:object>
+          </rdf:Description>
+          <rdf:Description>
+            <sp:subject rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >propositionEval</sp:varName>
+            </sp:subject>
+            <sp:predicate rdf:resource="http://semanticscience.org/ontology/hyque.owl#HYPOTHESIS_0000030"/>
+            <sp:object rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >propositionFunction</sp:varName>
+            </sp:object>
+          </rdf:Description>
+        </sp:templates>
+      </sp:Construct>
+    </spin:rule>
+    <spin:rule>
+      <sp:Construct>
+        <sp:where rdf:parseType="Collection">
+          <rdf:Description>
+            <sp:subject rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >hypothesis</sp:varName>
+            </sp:subject>
+            <sp:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+            <sp:object rdf:resource="http://semanticscience.org/ontology/hyque.owl#HYPOTHESIS_0000000"/>
+          </rdf:Description>
+          <sp:TriplePath>
+            <sp:subject rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >hypothesis</sp:varName>
+            </sp:subject>
+            <sp:path>
+              <sp:ModPath>
+                <sp:subPath rdf:resource="http://semanticscience.org/ontology/hyque.owl#HYPOTHESIS_0000010"/>
+                <sp:modMax rdf:datatype="http://www.w3.org/2001/XMLSchema#integer"
+                >-2</sp:modMax>
+                <sp:modMin rdf:datatype="http://www.w3.org/2001/XMLSchema#integer"
+                >0</sp:modMin>
+              </sp:ModPath>
+            </sp:path>
+            <sp:object rdf:resource="http://spinrdf.org/spin#_this"/>
+          </sp:TriplePath>
+          <rdf:Description>
+            <sp:subject rdf:resource="http://spinrdf.org/spin#_this"/>
+            <sp:predicate rdf:resource="http://semanticscience.org/ontology/hyque.owl#HYPOTHESIS_0000012"/>
+            <sp:object rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >event</sp:varName>
+            </sp:object>
+          </rdf:Description>
+          <rdf:Description>
+            <sp:subject rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >event</sp:varName>
+            </sp:subject>
+            <sp:predicate rdf:resource="http://semanticscience.org/ontology/hyque.owl#HYPOTHESIS_0000008"/>
+            <sp:object rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >eventScore</sp:varName>
+            </sp:object>
+          </rdf:Description>
+          <sp:Bind>
+            <sp:variable rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >propositionEvalScoreVal</sp:varName>
+            </sp:variable>
+            <sp:expression>
+              <calculateConjunctivePropositionOfEventsScore>
+                <sp:arg1 rdf:resource="http://spinrdf.org/spin#_this"/>
+              </calculateConjunctivePropositionOfEventsScore>
+            </sp:expression>
+          </sp:Bind>
+          <sp:Bind>
+            <sp:variable rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >propositionEval</sp:varName>
+            </sp:variable>
+            <sp:expression>
+              <sp:iri>
+                <sp:arg1>
+                  <fn:concat>
+                    <sp:arg1>
+                      <afn:namespace>
+                        <sp:arg1 rdf:resource="http://spinrdf.org/spin#_this"/>
+                      </afn:namespace>
+                    </sp:arg1>
+                    <sp:arg2>
+                      <afn:localname>
+                        <sp:arg1 rdf:resource="http://spinrdf.org/spin#_this"/>
+                      </afn:localname>
+                    </sp:arg2>
+                    <sp:arg3>_proposition_evaluation</sp:arg3>
+                  </fn:concat>
+                </sp:arg1>
+              </sp:iri>
+            </sp:expression>
+          </sp:Bind>
+          <sp:Bind>
+            <sp:variable rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >propositionEvalOvopub</sp:varName>
+            </sp:variable>
+            <sp:expression>
+              <sp:iri>
+                <sp:arg1>
+                  <fn:concat>
+                    <sp:arg1>
+                      <afn:namespace>
+                        <sp:arg1 rdf:resource="http://spinrdf.org/spin#_this"/>
+                      </afn:namespace>
+                    </sp:arg1>
+                    <sp:arg2>
+                      <afn:localname>
+                        <sp:arg1 rdf:resource="http://spinrdf.org/spin#_this"/>
+                      </afn:localname>
+                    </sp:arg2>
+                    <sp:arg3>_proposition_evaluation_ovopub</sp:arg3>
+                  </fn:concat>
+                </sp:arg1>
+              </sp:iri>
+            </sp:expression>
+          </sp:Bind>
+          <sp:Bind>
+            <sp:variable rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >propositionFunction</sp:varName>
+            </sp:variable>
+            <sp:expression>
+              <spin:Function rdf:ID="calculateConjunctivePropositionOfEventsScore">
+                <rdfs:subClassOf rdf:resource="http://spinrdf.org/spin#Functions"/>
+                <spin:constraint>
+                  <spl:Argument>
+                    <spl:predicate rdf:resource="http://spinrdf.org/sp#arg1"/>
+                  </spl:Argument>
+                </spin:constraint>
+                <spin:body>
+                  <sp:Select>
+                    <sp:where rdf:parseType="Collection">
+                      <rdf:Description>
+                        <sp:subject rdf:resource="http://spinrdf.org/spin#_arg1"/>
+                        <sp:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+                        <sp:object rdf:resource="http://semanticscience.org/ontology/hyque.owl#HYPOTHESIS_0000002"/>
+                      </rdf:Description>
+                      <rdf:Description>
+                        <sp:subject rdf:resource="http://spinrdf.org/spin#_arg1"/>
+                        <sp:predicate rdf:resource="http://semanticscience.org/ontology/hyque.owl#HYPOTHESIS_0000012"/>
+                        <sp:object rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >event</sp:varName>
+                        </sp:object>
+                      </rdf:Description>
+                      <rdf:Description>
+                        <sp:subject rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >event</sp:varName>
+                        </sp:subject>
+                        <sp:predicate rdf:resource="http://semanticscience.org/ontology/hyque.owl#HYPOTHESIS_0000008"/>
+                        <sp:object rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >eventScore</sp:varName>
+                        </sp:object>
+                      </rdf:Description>
+                      <rdf:Description>
+                        <sp:subject rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >eventScore</sp:varName>
+                        </sp:subject>
+                        <sp:predicate rdf:resource="http://semanticscience.org/ontology/hyque.owl#HYPOTHESIS_0000013"/>
+                        <sp:object rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >eventScoreVal</sp:varName>
+                        </sp:object>
+                      </rdf:Description>
+                    </sp:where>
+                    <sp:resultVariables rdf:parseType="Collection">
+                      <rdf:Description>
+                        <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                        >return</sp:varName>
+                        <sp:expression>
+                          <sp:Avg>
+                            <sp:expression rdf:parseType="Resource">
+                              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                              >eventScoreVal</sp:varName>
+                            </sp:expression>
+                          </sp:Avg>
+                        </sp:expression>
+                      </rdf:Description>
+                    </sp:resultVariables>
+                  </sp:Select>
+                </spin:body>
+              </spin:Function>
+            </sp:expression>
+          </sp:Bind>
+          <sp:Bind>
+            <sp:variable rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >time</sp:varName>
+            </sp:variable>
+            <sp:expression>
+              <afn:now/>
+            </sp:expression>
+          </sp:Bind>
+          <sp:Bind>
+            <sp:variable rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >day</sp:varName>
+            </sp:variable>
+            <sp:expression>
+              <sp:day>
+                <sp:arg1 rdf:parseType="Resource">
+                  <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                  >time</sp:varName>
+                </sp:arg1>
+              </sp:day>
+            </sp:expression>
+          </sp:Bind>
+          <sp:Bind>
+            <sp:variable rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >month</sp:varName>
+            </sp:variable>
+            <sp:expression>
+              <sp:month>
+                <sp:arg1 rdf:parseType="Resource">
+                  <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                  >time</sp:varName>
+                </sp:arg1>
+              </sp:month>
+            </sp:expression>
+          </sp:Bind>
+          <sp:Bind>
+            <sp:variable rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >year</sp:varName>
+            </sp:variable>
+            <sp:expression>
+              <sp:year>
+                <sp:arg1 rdf:parseType="Resource">
+                  <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                  >time</sp:varName>
+                </sp:arg1>
+              </sp:year>
+            </sp:expression>
+          </sp:Bind>
+          <sp:Bind>
+            <sp:variable rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >hour</sp:varName>
+            </sp:variable>
+            <sp:expression>
+              <sp:hours>
+                <sp:arg1 rdf:parseType="Resource">
+                  <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                  >time</sp:varName>
+                </sp:arg1>
+              </sp:hours>
+            </sp:expression>
+          </sp:Bind>
+          <sp:Bind>
+            <sp:variable rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >currentTime</sp:varName>
+            </sp:variable>
+            <sp:expression>
+              <fn:concat>
+                <sp:arg1 rdf:parseType="Resource">
+                  <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                  >year</sp:varName>
+                </sp:arg1>
+                <sp:arg2>-</sp:arg2>
+                <sp:arg3 rdf:parseType="Resource">
+                  <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                  >month</sp:varName>
+                </sp:arg3>
+                <sp:arg4>-</sp:arg4>
+                <sp:arg5 rdf:parseType="Resource">
+                  <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                  >day</sp:varName>
+                </sp:arg5>
+                <sp:arg6>T</sp:arg6>
+                <sp:arg7 rdf:parseType="Resource">
+                  <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                  >hour</sp:varName>
+                </sp:arg7>
+                <sp:arg8>:00:00Z</sp:arg8>
+              </fn:concat>
+            </sp:expression>
+          </sp:Bind>
+        </sp:where>
+        <sp:templates rdf:parseType="Collection">
+          <rdf:Description>
+            <sp:subject rdf:resource="http://spinrdf.org/spin#_this"/>
+            <sp:predicate rdf:resource="http://semanticscience.org/ontology/hyque.owl#HYPOTHESIS_0000008"/>
+            <sp:object rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >propositionEval</sp:varName>
+            </sp:object>
+          </rdf:Description>
+          <rdf:Description>
+            <sp:subject rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >propositionEval</sp:varName>
+            </sp:subject>
+            <sp:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+            <sp:object rdf:resource="http://semanticscience.org/ontology/hyque.owl#HYPOTHESIS_0000005"/>
+          </rdf:Description>
+          <rdf:Description>
+            <sp:subject rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >propositionEval</sp:varName>
+            </sp:subject>
+            <sp:predicate rdf:resource="http://semanticscience.org/ontology/hyque.owl#HYPOTHESIS_0000007"/>
+            <sp:object rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >eventScore</sp:varName>
+            </sp:object>
+          </rdf:Description>
+          <rdf:Description>
+            <sp:subject rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >propositionEval</sp:varName>
+            </sp:subject>
+            <sp:predicate rdf:resource="http://semanticscience.org/ontology/hyque.owl#HYPOTHESIS_0000013"/>
+            <sp:object rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >propositionEvalScoreVal</sp:varName>
+            </sp:object>
+          </rdf:Description>
+          <rdf:Description>
+            <sp:subject rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >propositionEval</sp:varName>
+            </sp:subject>
+            <sp:predicate rdf:resource="http://semanticscience.org/ontology/hyque.owl#HYPOTHESIS_0000030"/>
+            <sp:object rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >propositionFunction</sp:varName>
+            </sp:object>
+          </rdf:Description>
+          <rdf:Description>
+            <sp:subject rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >propositionEval</sp:varName>
+            </sp:subject>
+            <sp:predicate rdf:resource="http://www.w3.org/2004/03/trix/rdfg-1/subGraphOf"/>
+            <sp:object rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >propositionEvalOvopub</sp:varName>
+            </sp:object>
+          </rdf:Description>
+          <rdf:Description>
+            <sp:subject rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >propositionEvalOvopub</sp:varName>
+            </sp:subject>
+            <sp:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+            <sp:object rdf:resource="http://semanticscience.org/ontology/sio.owl#SIO_001302"/>
+          </rdf:Description>
+          <rdf:Description>
+            <sp:subject rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >propositionEvalOvopub</sp:varName>
+            </sp:subject>
+            <sp:predicate rdf:resource="http://purl.org/dc/terms/creator"/>
+            <sp:object>HyQue</sp:object>
+          </rdf:Description>
+          <rdf:Description>
+            <sp:subject rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >propositionEvalOvopub</sp:varName>
+            </sp:subject>
+            <sp:predicate rdf:resource="http://purl.org/dc/terms/rights"/>
+            <sp:object>use</sp:object>
+          </rdf:Description>
+          <rdf:Description>
+            <sp:subject rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >propositionEvalOvopub</sp:varName>
+            </sp:subject>
+            <sp:predicate rdf:resource="http://purl.org/dc/terms/created"/>
+            <sp:object rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >currentTime</sp:varName>
+            </sp:object>
+          </rdf:Description>
+        </sp:templates>
+      </sp:Construct>
+    </spin:rule>
+  </rdf:Description>
+  <spin:Function rdf:ID="calculateDisjunctivePropositionOfPropositionsScore">
+    <rdfs:subClassOf rdf:resource="http://spinrdf.org/spin#Functions"/>
+    <spin:constraint>
+      <spl:Argument>
+        <spl:predicate rdf:resource="http://spinrdf.org/sp#arg1"/>
+      </spl:Argument>
+    </spin:constraint>
+    <spin:body>
+      <sp:Select>
+        <sp:where rdf:parseType="Collection">
+          <rdf:Description>
+            <sp:subject rdf:resource="http://spinrdf.org/spin#_arg1"/>
+            <sp:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+            <sp:object>
+              <rdf:Description rdf:about="http://semanticscience.org/ontology/hyque.owl#HYPOTHESIS_0000003">
+                <spin:rule>
+                  <sp:Construct>
+                    <sp:where rdf:parseType="Collection">
+                      <rdf:Description>
+                        <sp:subject rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >hypothesis</sp:varName>
+                        </sp:subject>
+                        <sp:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+                        <sp:object rdf:resource="http://semanticscience.org/ontology/hyque.owl#HYPOTHESIS_0000000"/>
+                      </rdf:Description>
+                      <sp:TriplePath>
+                        <sp:subject rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >hypothesis</sp:varName>
+                        </sp:subject>
+                        <sp:path>
+                          <sp:ModPath>
+                            <sp:subPath rdf:resource="http://semanticscience.org/ontology/hyque.owl#HYPOTHESIS_0000010"/>
+                            <sp:modMax rdf:datatype="http://www.w3.org/2001/XMLSchema#integer"
+                            >-2</sp:modMax>
+                            <sp:modMin rdf:datatype="http://www.w3.org/2001/XMLSchema#integer"
+                            >0</sp:modMin>
+                          </sp:ModPath>
+                        </sp:path>
+                        <sp:object rdf:resource="http://spinrdf.org/spin#_this"/>
+                      </sp:TriplePath>
+                      <rdf:Description>
+                        <sp:subject rdf:resource="http://spinrdf.org/spin#_this"/>
+                        <sp:predicate rdf:resource="http://semanticscience.org/ontology/hyque.owl#HYPOTHESIS_0000010"/>
+                        <sp:object rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >proposition</sp:varName>
+                        </sp:object>
+                      </rdf:Description>
+                      <rdf:Description>
+                        <sp:subject rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >event</sp:varName>
+                        </sp:subject>
+                        <sp:predicate rdf:resource="http://semanticscience.org/ontology/hyque.owl#HYPOTHESIS_0000008"/>
+                        <sp:object rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >propositionScore</sp:varName>
+                        </sp:object>
+                      </rdf:Description>
+                      <sp:Bind>
+                        <sp:variable rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >propositionFunction</sp:varName>
+                        </sp:variable>
+                        <sp:expression rdf:resource="#calculateDisjunctivePropositionOfPropositionsScore"/>
+                      </sp:Bind>
+                      <sp:Bind>
+                        <sp:variable rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >propositionEvalScoreVal</sp:varName>
+                        </sp:variable>
+                        <sp:expression>
+                          <calculateDisjunctivePropositionOfPropositionsScore>
+                            <sp:arg1 rdf:resource="http://spinrdf.org/spin#_this"/>
+                          </calculateDisjunctivePropositionOfPropositionsScore>
+                        </sp:expression>
+                      </sp:Bind>
+                      <sp:Bind>
+                        <sp:variable rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >propositionEval</sp:varName>
+                        </sp:variable>
+                        <sp:expression>
+                          <sp:iri>
+                            <sp:arg1>
+                              <fn:concat>
+                                <sp:arg1>
+                                  <afn:namespace>
+                                    <sp:arg1 rdf:resource="http://spinrdf.org/spin#_this"/>
+                                  </afn:namespace>
+                                </sp:arg1>
+                                <sp:arg2>
+                                  <afn:localname>
+                                    <sp:arg1 rdf:resource="http://spinrdf.org/spin#_this"/>
+                                  </afn:localname>
+                                </sp:arg2>
+                                <sp:arg3>_proposition_evaluation</sp:arg3>
+                              </fn:concat>
+                            </sp:arg1>
+                          </sp:iri>
+                        </sp:expression>
+                      </sp:Bind>
+                      <sp:Bind>
+                        <sp:variable rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >propositionEvalOvopub</sp:varName>
+                        </sp:variable>
+                        <sp:expression>
+                          <sp:iri>
+                            <sp:arg1>
+                              <fn:concat>
+                                <sp:arg1>
+                                  <afn:namespace>
+                                    <sp:arg1 rdf:resource="http://spinrdf.org/spin#_this"/>
+                                  </afn:namespace>
+                                </sp:arg1>
+                                <sp:arg2>
+                                  <afn:localname>
+                                    <sp:arg1 rdf:resource="http://spinrdf.org/spin#_this"/>
+                                  </afn:localname>
+                                </sp:arg2>
+                                <sp:arg3>_proposition_evaluation_ovopub</sp:arg3>
+                              </fn:concat>
+                            </sp:arg1>
+                          </sp:iri>
+                        </sp:expression>
+                      </sp:Bind>
+                    </sp:where>
+                    <sp:templates rdf:parseType="Collection">
+                      <rdf:Description>
+                        <sp:subject rdf:resource="http://spinrdf.org/spin#_this"/>
+                        <sp:predicate rdf:resource="http://semanticscience.org/ontology/hyque.owl#HYPOTHESIS_0000008"/>
+                        <sp:object rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >propositionEval</sp:varName>
+                        </sp:object>
+                      </rdf:Description>
+                      <rdf:Description>
+                        <sp:subject rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >propositionEval</sp:varName>
+                        </sp:subject>
+                        <sp:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+                        <sp:object rdf:resource="http://semanticscience.org/ontology/hyque.owl#HYPOTHESIS_0000005"/>
+                      </rdf:Description>
+                      <rdf:Description>
+                        <sp:subject rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >propositionEval</sp:varName>
+                        </sp:subject>
+                        <sp:predicate rdf:resource="http://semanticscience.org/ontology/hyque.owl#HYPOTHESIS_0000007"/>
+                        <sp:object rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >propositionScore</sp:varName>
+                        </sp:object>
+                      </rdf:Description>
+                      <rdf:Description>
+                        <sp:subject rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >propositionEval</sp:varName>
+                        </sp:subject>
+                        <sp:predicate rdf:resource="http://semanticscience.org/ontology/hyque.owl#HYPOTHESIS_0000013"/>
+                        <sp:object rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >propositionEvalScoreVal</sp:varName>
+                        </sp:object>
+                      </rdf:Description>
+                      <rdf:Description>
+                        <sp:subject rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >propositionEval</sp:varName>
+                        </sp:subject>
+                        <sp:predicate rdf:resource="http://semanticscience.org/ontology/hyque.owl#HYPOTHESIS_0000030"/>
+                        <sp:object rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >propositionFunction</sp:varName>
+                        </sp:object>
+                      </rdf:Description>
+                      <rdf:Description>
+                        <sp:subject rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >propositionEval</sp:varName>
+                        </sp:subject>
+                        <sp:predicate rdf:resource="http://www.w3.org/2004/03/trix/rdfg-1/subGraphOf"/>
+                        <sp:object rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >propositionEvalOvopub</sp:varName>
+                        </sp:object>
+                      </rdf:Description>
+                      <rdf:Description>
+                        <sp:subject rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >propositionEvalOvopub</sp:varName>
+                        </sp:subject>
+                        <sp:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+                        <sp:object rdf:resource="http://semanticscience.org/ontology/sio.owl#SIO_001302"/>
+                      </rdf:Description>
+                      <rdf:Description>
+                        <sp:subject rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >propositionEvalOvopub</sp:varName>
+                        </sp:subject>
+                        <sp:predicate rdf:resource="http://purl.org/dc/terms/creator"/>
+                        <sp:object>HyQue</sp:object>
+                      </rdf:Description>
+                      <rdf:Description>
+                        <sp:subject rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >propositionEvalOvopub</sp:varName>
+                        </sp:subject>
+                        <sp:predicate rdf:resource="http://purl.org/dc/terms/rights"/>
+                        <sp:object>use</sp:object>
+                      </rdf:Description>
+                      <rdf:Description>
+                        <sp:subject rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >propositionEvalOvopub</sp:varName>
+                        </sp:subject>
+                        <sp:predicate rdf:resource="http://purl.org/dc/terms/created"/>
+                        <sp:object rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >currentTime</sp:varName>
+                        </sp:object>
+                      </rdf:Description>
+                    </sp:templates>
+                  </sp:Construct>
+                </spin:rule>
+                <spin:rule>
+                  <sp:Construct>
+                    <sp:where rdf:parseType="Collection">
+                      <rdf:Description>
+                        <sp:subject rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >hypothesis</sp:varName>
+                        </sp:subject>
+                        <sp:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+                        <sp:object rdf:resource="http://semanticscience.org/ontology/hyque.owl#HYPOTHESIS_0000000"/>
+                      </rdf:Description>
+                      <sp:TriplePath>
+                        <sp:subject rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >hypothesis</sp:varName>
+                        </sp:subject>
+                        <sp:path>
+                          <sp:ModPath>
+                            <sp:subPath rdf:resource="http://semanticscience.org/ontology/hyque.owl#HYPOTHESIS_0000010"/>
+                            <sp:modMax rdf:datatype="http://www.w3.org/2001/XMLSchema#integer"
+                            >-2</sp:modMax>
+                            <sp:modMin rdf:datatype="http://www.w3.org/2001/XMLSchema#integer"
+                            >0</sp:modMin>
+                          </sp:ModPath>
+                        </sp:path>
+                        <sp:object rdf:resource="http://spinrdf.org/spin#_this"/>
+                      </sp:TriplePath>
+                      <rdf:Description>
+                        <sp:subject rdf:resource="http://spinrdf.org/spin#_this"/>
+                        <sp:predicate rdf:resource="http://semanticscience.org/ontology/hyque.owl#HYPOTHESIS_0000012"/>
+                        <sp:object rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >event</sp:varName>
+                        </sp:object>
+                      </rdf:Description>
+                      <rdf:Description>
+                        <sp:subject rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >event</sp:varName>
+                        </sp:subject>
+                        <sp:predicate rdf:resource="http://semanticscience.org/ontology/hyque.owl#HYPOTHESIS_0000008"/>
+                        <sp:object rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >eventScore</sp:varName>
+                        </sp:object>
+                      </rdf:Description>
+                      <sp:Bind>
+                        <sp:variable rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >propositionEvalScoreVal</sp:varName>
+                        </sp:variable>
+                        <sp:expression>
+                          <calculateDisjunctivePropositionOfEventsScore>
+                            <sp:arg1 rdf:resource="http://spinrdf.org/spin#_this"/>
+                          </calculateDisjunctivePropositionOfEventsScore>
+                        </sp:expression>
+                      </sp:Bind>
+                      <sp:Bind>
+                        <sp:variable rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >propositionEval</sp:varName>
+                        </sp:variable>
+                        <sp:expression>
+                          <sp:iri>
+                            <sp:arg1>
+                              <fn:concat>
+                                <sp:arg1>
+                                  <afn:namespace>
+                                    <sp:arg1 rdf:resource="http://spinrdf.org/spin#_this"/>
+                                  </afn:namespace>
+                                </sp:arg1>
+                                <sp:arg2>
+                                  <afn:localname>
+                                    <sp:arg1 rdf:resource="http://spinrdf.org/spin#_this"/>
+                                  </afn:localname>
+                                </sp:arg2>
+                                <sp:arg3>_proposition_evaluation</sp:arg3>
+                              </fn:concat>
+                            </sp:arg1>
+                          </sp:iri>
+                        </sp:expression>
+                      </sp:Bind>
+                      <sp:Bind>
+                        <sp:variable rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >propositionEvalOvopub</sp:varName>
+                        </sp:variable>
+                        <sp:expression>
+                          <sp:iri>
+                            <sp:arg1>
+                              <fn:concat>
+                                <sp:arg1>
+                                  <afn:namespace>
+                                    <sp:arg1 rdf:resource="http://spinrdf.org/spin#_this"/>
+                                  </afn:namespace>
+                                </sp:arg1>
+                                <sp:arg2>
+                                  <afn:localname>
+                                    <sp:arg1 rdf:resource="http://spinrdf.org/spin#_this"/>
+                                  </afn:localname>
+                                </sp:arg2>
+                                <sp:arg3>_proposition_evaluation_ovopub</sp:arg3>
+                              </fn:concat>
+                            </sp:arg1>
+                          </sp:iri>
+                        </sp:expression>
+                      </sp:Bind>
+                      <sp:Bind>
+                        <sp:variable rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >propositionFunction</sp:varName>
+                        </sp:variable>
+                        <sp:expression>
+                          <spin:Function rdf:ID="calculateDisjunctivePropositionOfEventsScore">
+                            <rdfs:subClassOf rdf:resource="http://spinrdf.org/spin#Functions"/>
+                            <spin:constraint>
+                              <spl:Argument>
+                                <spl:predicate rdf:resource="http://spinrdf.org/sp#arg1"/>
+                              </spl:Argument>
+                            </spin:constraint>
+                            <spin:body>
+                              <sp:Select>
+                                <sp:where rdf:parseType="Collection">
+                                  <rdf:Description>
+                                    <sp:subject rdf:resource="http://spinrdf.org/spin#_arg1"/>
+                                    <sp:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+                                    <sp:object rdf:resource="http://semanticscience.org/ontology/hyque.owl#HYPOTHESIS_0000003"/>
+                                  </rdf:Description>
+                                  <rdf:Description>
+                                    <sp:subject rdf:resource="http://spinrdf.org/spin#_arg1"/>
+                                    <sp:predicate rdf:resource="http://semanticscience.org/ontology/hyque.owl#HYPOTHESIS_0000012"/>
+                                    <sp:object rdf:parseType="Resource">
+                                      <sp:varName rdf:datatype=
+                                      "http://www.w3.org/2001/XMLSchema#string"
+                                      >event</sp:varName>
+                                    </sp:object>
+                                  </rdf:Description>
+                                  <rdf:Description>
+                                    <sp:subject rdf:parseType="Resource">
+                                      <sp:varName rdf:datatype=
+                                      "http://www.w3.org/2001/XMLSchema#string"
+                                      >event</sp:varName>
+                                    </sp:subject>
+                                    <sp:predicate rdf:resource="http://semanticscience.org/ontology/hyque.owl#HYPOTHESIS_0000008"/>
+                                    <sp:object rdf:parseType="Resource">
+                                      <sp:varName rdf:datatype=
+                                      "http://www.w3.org/2001/XMLSchema#string"
+                                      >eventScore</sp:varName>
+                                    </sp:object>
+                                  </rdf:Description>
+                                  <rdf:Description>
+                                    <sp:subject rdf:parseType="Resource">
+                                      <sp:varName rdf:datatype=
+                                      "http://www.w3.org/2001/XMLSchema#string"
+                                      >eventScore</sp:varName>
+                                    </sp:subject>
+                                    <sp:predicate rdf:resource="http://semanticscience.org/ontology/hyque.owl#HYPOTHESIS_0000013"/>
+                                    <sp:object rdf:parseType="Resource">
+                                      <sp:varName rdf:datatype=
+                                      "http://www.w3.org/2001/XMLSchema#string"
+                                      >eventScoreVal</sp:varName>
+                                    </sp:object>
+                                  </rdf:Description>
+                                </sp:where>
+                                <sp:resultVariables rdf:parseType="Collection">
+                                  <rdf:Description>
+                                    <sp:varName rdf:datatype=
+                                    "http://www.w3.org/2001/XMLSchema#string"
+                                    >return</sp:varName>
+                                    <sp:expression>
+                                      <sp:Max>
+                                        <sp:expression rdf:parseType="Resource">
+                                          <sp:varName rdf:datatype=
+                                          "http://www.w3.org/2001/XMLSchema#string"
+                                          >eventScoreVal</sp:varName>
+                                        </sp:expression>
+                                      </sp:Max>
+                                    </sp:expression>
+                                  </rdf:Description>
+                                </sp:resultVariables>
+                              </sp:Select>
+                            </spin:body>
+                          </spin:Function>
+                        </sp:expression>
+                      </sp:Bind>
+                      <sp:Bind>
+                        <sp:variable rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >time</sp:varName>
+                        </sp:variable>
+                        <sp:expression>
+                          <afn:now/>
+                        </sp:expression>
+                      </sp:Bind>
+                      <sp:Bind>
+                        <sp:variable rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >day</sp:varName>
+                        </sp:variable>
+                        <sp:expression>
+                          <sp:day>
+                            <sp:arg1 rdf:parseType="Resource">
+                              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                              >time</sp:varName>
+                            </sp:arg1>
+                          </sp:day>
+                        </sp:expression>
+                      </sp:Bind>
+                      <sp:Bind>
+                        <sp:variable rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >month</sp:varName>
+                        </sp:variable>
+                        <sp:expression>
+                          <sp:month>
+                            <sp:arg1 rdf:parseType="Resource">
+                              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                              >time</sp:varName>
+                            </sp:arg1>
+                          </sp:month>
+                        </sp:expression>
+                      </sp:Bind>
+                      <sp:Bind>
+                        <sp:variable rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >year</sp:varName>
+                        </sp:variable>
+                        <sp:expression>
+                          <sp:year>
+                            <sp:arg1 rdf:parseType="Resource">
+                              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                              >time</sp:varName>
+                            </sp:arg1>
+                          </sp:year>
+                        </sp:expression>
+                      </sp:Bind>
+                      <sp:Bind>
+                        <sp:variable rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >hour</sp:varName>
+                        </sp:variable>
+                        <sp:expression>
+                          <sp:hours>
+                            <sp:arg1 rdf:parseType="Resource">
+                              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                              >time</sp:varName>
+                            </sp:arg1>
+                          </sp:hours>
+                        </sp:expression>
+                      </sp:Bind>
+                      <sp:Bind>
+                        <sp:variable rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >currentTime</sp:varName>
+                        </sp:variable>
+                        <sp:expression>
+                          <fn:concat>
+                            <sp:arg1 rdf:parseType="Resource">
+                              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                              >year</sp:varName>
+                            </sp:arg1>
+                            <sp:arg2>-</sp:arg2>
+                            <sp:arg3 rdf:parseType="Resource">
+                              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                              >month</sp:varName>
+                            </sp:arg3>
+                            <sp:arg4>-</sp:arg4>
+                            <sp:arg5 rdf:parseType="Resource">
+                              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                              >day</sp:varName>
+                            </sp:arg5>
+                            <sp:arg6>T</sp:arg6>
+                            <sp:arg7 rdf:parseType="Resource">
+                              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                              >hour</sp:varName>
+                            </sp:arg7>
+                            <sp:arg8>:00:00Z</sp:arg8>
+                          </fn:concat>
+                        </sp:expression>
+                      </sp:Bind>
+                    </sp:where>
+                    <sp:templates rdf:parseType="Collection">
+                      <rdf:Description>
+                        <sp:subject rdf:resource="http://spinrdf.org/spin#_this"/>
+                        <sp:predicate rdf:resource="http://semanticscience.org/ontology/hyque.owl#HYPOTHESIS_0000008"/>
+                        <sp:object rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >propositionEval</sp:varName>
+                        </sp:object>
+                      </rdf:Description>
+                      <rdf:Description>
+                        <sp:subject rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >propositionEval</sp:varName>
+                        </sp:subject>
+                        <sp:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+                        <sp:object rdf:resource="http://semanticscience.org/ontology/hyque.owl#HYPOTHESIS_0000005"/>
+                      </rdf:Description>
+                      <rdf:Description>
+                        <sp:subject rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >propositionEval</sp:varName>
+                        </sp:subject>
+                        <sp:predicate rdf:resource="http://semanticscience.org/ontology/hyque.owl#HYPOTHESIS_0000007"/>
+                        <sp:object rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >eventScore</sp:varName>
+                        </sp:object>
+                      </rdf:Description>
+                      <rdf:Description>
+                        <sp:subject rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >propositionEval</sp:varName>
+                        </sp:subject>
+                        <sp:predicate rdf:resource="http://semanticscience.org/ontology/hyque.owl#HYPOTHESIS_0000013"/>
+                        <sp:object rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >propositionEvalScoreVal</sp:varName>
+                        </sp:object>
+                      </rdf:Description>
+                      <rdf:Description>
+                        <sp:subject rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >propositionEval</sp:varName>
+                        </sp:subject>
+                        <sp:predicate rdf:resource="http://semanticscience.org/ontology/hyque.owl#HYPOTHESIS_0000030"/>
+                        <sp:object rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >propositionFunction</sp:varName>
+                        </sp:object>
+                      </rdf:Description>
+                      <rdf:Description>
+                        <sp:subject rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >propositionEval</sp:varName>
+                        </sp:subject>
+                        <sp:predicate rdf:resource="http://www.w3.org/2004/03/trix/rdfg-1/subGraphOf"/>
+                        <sp:object rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >propositionEvalOvopub</sp:varName>
+                        </sp:object>
+                      </rdf:Description>
+                      <rdf:Description>
+                        <sp:subject rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >propositionEvalOvopub</sp:varName>
+                        </sp:subject>
+                        <sp:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+                        <sp:object rdf:resource="http://semanticscience.org/ontology/sio.owl#SIO_001302"/>
+                      </rdf:Description>
+                      <rdf:Description>
+                        <sp:subject rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >propositionEvalOvopub</sp:varName>
+                        </sp:subject>
+                        <sp:predicate rdf:resource="http://purl.org/dc/terms/creator"/>
+                        <sp:object>HyQue</sp:object>
+                      </rdf:Description>
+                      <rdf:Description>
+                        <sp:subject rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >propositionEvalOvopub</sp:varName>
+                        </sp:subject>
+                        <sp:predicate rdf:resource="http://purl.org/dc/terms/rights"/>
+                        <sp:object>use</sp:object>
+                      </rdf:Description>
+                      <rdf:Description>
+                        <sp:subject rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >propositionEvalOvopub</sp:varName>
+                        </sp:subject>
+                        <sp:predicate rdf:resource="http://purl.org/dc/terms/created"/>
+                        <sp:object rdf:parseType="Resource">
+                          <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >currentTime</sp:varName>
+                        </sp:object>
+                      </rdf:Description>
+                    </sp:templates>
+                  </sp:Construct>
+                </spin:rule>
+              </rdf:Description>
+            </sp:object>
+          </rdf:Description>
+          <rdf:Description>
+            <sp:subject rdf:resource="http://spinrdf.org/spin#_arg1"/>
+            <sp:predicate rdf:resource="http://semanticscience.org/ontology/hyque.owl#HYPOTHESIS_0000010"/>
+            <sp:object rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >proposition</sp:varName>
+            </sp:object>
+          </rdf:Description>
+          <rdf:Description>
+            <sp:subject rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >proposition</sp:varName>
+            </sp:subject>
+            <sp:predicate rdf:resource="http://semanticscience.org/ontology/hyque.owl#HYPOTHESIS_0000008"/>
+            <sp:object rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >propositionScore</sp:varName>
+            </sp:object>
+          </rdf:Description>
+          <rdf:Description>
+            <sp:subject rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >propositionScore</sp:varName>
+            </sp:subject>
+            <sp:predicate rdf:resource="http://semanticscience.org/ontology/hyque.owl#HYPOTHESIS_0000013"/>
+            <sp:object rdf:parseType="Resource">
+              <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >propositionScoreVal</sp:varName>
+            </sp:object>
+          </rdf:Description>
+        </sp:where>
+        <sp:resultVariables rdf:parseType="Collection">
+          <rdf:Description>
+            <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >return</sp:varName>
+            <sp:expression>
+              <sp:Max>
+                <sp:expression rdf:parseType="Resource">
+                  <sp:varName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                  >propositionScoreVal</sp:varName>
+                </sp:expression>
+              </sp:Max>
+            </sp:expression>
+          </rdf:Description>
+        </sp:resultVariables>
+      </sp:Select>
+    </spin:body>
+  </spin:Function>
+</rdf:RDF>
+
+<!-- Created with TopBraid -->
